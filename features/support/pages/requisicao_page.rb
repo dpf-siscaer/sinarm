@@ -167,6 +167,7 @@ class Requisicao < SitePrism::Page
         observacoes.set obs
     end
 
+    #método finalizacao do cadastro
    def finalizar_cadastro(uf_finalizacao, cidade_finalizacao, local_finalizacao)
         uf_finalizacao = uf_finalizacao.upcase
         cidade_finalizacao = cidade_finalizacao.capitalize
@@ -178,7 +179,7 @@ class Requisicao < SitePrism::Page
         select local_finalizacao, from: 'formGeral:termoResponsabilidade:postoAtendimento'
    end
    
-   
+   #metodo alert javaScript
     def infomacao
            page.execute_script('alert("Digite o texto da Captcha\n"
             + "Lembrando que você terá 15 Segundos\n"
@@ -188,11 +189,13 @@ class Requisicao < SitePrism::Page
             sleep(15)
     end
 
+    #metódo habilitando campo
     def codigo
         page.accept_alert
         input_captcha.click
     end
 
+    #método submeter
     def submeter
         emitir 
     end

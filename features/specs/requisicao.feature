@@ -1,6 +1,5 @@
 #language: pt
 
-@logout
 @requerimento
 
 Funcionalidade: Requisicao
@@ -12,4 +11,4 @@ Dado que eu estou logado como "toledo.rct" e 'ctidpf'
 Cenario: Realizar o Requerimento no SINARM
 
 Quando eu estou no formulario requisicao
-#Entao eu vejo a menssagem ''
+Entao eu vejo a menssagem 'REQUERIMENTO DE AQUISIÇÃO DE ARMA DE FOGO'

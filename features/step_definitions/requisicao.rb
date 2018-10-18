@@ -63,3 +63,7 @@ Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
       @requisicao.submeter
 
    end
+
+   Entao("eu vejo a menssagem {string}") do |msm|
+        page.has_text?(msm)
+  end
