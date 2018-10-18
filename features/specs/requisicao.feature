@@ -12,4 +12,4 @@ Dado que eu estou logado como "toledo.rct" e 'ctidpf'
 Cenario: Realizar o Requerimento no SINARM
 
 Quando eu estou no formulario requisicao
-#Entao eu posso inserir as informacoes do candidato
+#Entao eu vejo a menssagem ''

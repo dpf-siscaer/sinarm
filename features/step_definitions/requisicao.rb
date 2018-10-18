@@ -56,8 +56,10 @@ Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
       local_final = 'SUPERINTENDÊNCIA REGIONAL DE POLÍCIA FEDERAL NO DISTRITO FEDERAL - SR/PF/DF'
 
       @requisicao.finalizar_cadastro  uf_final,  cidade_final, local_final
+      
+      @requisicao.infomacao
       @requisicao.codigo
-      sleep(5)
-      @requisicao.emitir
+      sleep(15)
+      @requisicao.submeter
 
    end

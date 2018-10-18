@@ -19,6 +19,8 @@ class Requisicao < SitePrism::Page
     element :ddd, '#formGeral\:formTabIdentificacao\:dddTelCelRes'
     element :telefone_celular, '#formGeral\:formTabIdentificacao\:telCelRes'
     element :observacoes, '.w100pc'
+    element :input_captcha, '#formGeral\:captcha'
+    element :texto, '.mensagem_erro'
    
 
     #mapeando botão
@@ -32,7 +34,11 @@ class Requisicao < SitePrism::Page
     def emitir
         click_button 'formGeral:emitirReq'
     end
-
+    
+    def limpar
+        click_button 'formGeral:limpar'
+    end
+    
 
     #Método seleciona o tipo de Cadastro a ser realizado
     def escolha(tipo_pessoa)
@@ -141,6 +147,7 @@ class Requisicao < SitePrism::Page
         select residencia_municipio, from: 'formGeral:formTabIdentificacao:municipioRes'
     end
 
+    #método que insere o telefone
     def informar_telefone_celular(ddd_interessado, telefone_celular_interessado)
         ddd.click
         ddd.set ddd_interessado
@@ -148,31 +155,46 @@ class Requisicao < SitePrism::Page
         telefone_celular.set telefone_celular_interessado
     end
 
+    #Método que escolhe o armamento
     def escolher_armamento(especie, calibre)
         select especie, from: 'formGeral:formDadosArma:especieArma'
         select calibre, from: 'formGeral:formDadosArma:calibreArma'
     end
 
+    #metódo que lança observações a arma
     def observacoes_arma(obs)
         observacoes.click
         observacoes.set obs
     end
 
    def finalizar_cadastro(uf_finalizacao, cidade_finalizacao, local_finalizacao)
-    uf_finalizacao = uf_finalizacao.upcase
-    cidade_finalizacao = cidade_finalizacao.capitalize
-    local_finalizacao = local_finalizacao.upcase
+        uf_finalizacao = uf_finalizacao.upcase
+        cidade_finalizacao = cidade_finalizacao.capitalize
+        local_finalizacao = local_finalizacao.upcase
 
-     find('#formGeral\:termoResponsabilidade\:declaracaoVeracidade').click
-     select uf_finalizacao, from: 'formGeral:termoResponsabilidade:ufUnidadeAtendimento'
-     select cidade_finalizacao, from: 'formGeral:termoResponsabilidade:municipiosUnidade'
-     select local_finalizacao, from: 'formGeral:termoResponsabilidade:postoAtendimento'
+        find('#formGeral\:termoResponsabilidade\:declaracaoVeracidade').click
+        select uf_finalizacao, from: 'formGeral:termoResponsabilidade:ufUnidadeAtendimento'
+        select cidade_finalizacao, from: 'formGeral:termoResponsabilidade:municipiosUnidade'
+        select local_finalizacao, from: 'formGeral:termoResponsabilidade:postoAtendimento'
    end
    
    
-    def codigo
-            page.execute_script('alert("Digite o texto da imagem:");')
+    def infomacao
+           page.execute_script('alert("Digite o texto da Captcha\n"
+            + "Lembrando que você terá 15 Segundos\n"
+            + "Para finalizar o Processo\n"
+            + "Por Gentileza não clique em nenhum botão\n"
+            + "Esta menssagem será fechada em 15 segundos");')  
+            sleep(15)
     end
 
+    def codigo
+        page.accept_alert
+        input_captcha.click
+    end
+
+    def submeter
+        emitir 
+    end
 end
 
