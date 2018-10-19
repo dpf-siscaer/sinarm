@@ -22,10 +22,6 @@ class Requisicao < SitePrism::Page
     element :input_captcha, '#formGeral\:captcha'
     element :texto, '.mensagem_erro'
    
-
-    #mapeando botão
-   
-
     #método de acao
     def avancar
         click_button 'formGeral:proximo' 
