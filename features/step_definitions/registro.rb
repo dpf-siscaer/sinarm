@@ -6,11 +6,10 @@ Quando("eu estou navegando para realizar o registro") do
   end
 
   within_window janela do
-    @registrar.home
-    @registrar.verfica
+    cpf = '08344033152'
+    @registrar.verfica cpf
      
-   sleep(2)
-   janela.close
+     janela.close
       
   end
 end

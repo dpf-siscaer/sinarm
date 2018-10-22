@@ -11,10 +11,41 @@ class Registro < SitePrism::Page
     def home
         click_link "Home"
     end
+
+    def receber
+        click_on 'Receber'
+    end
+
+    def pesquisar
+        click_on "Pesquisar"
+    end
        
-    def verfica
-            puts "Estou na Linha: #{tabela[16].text}"
-            tabela[16].find('#formAcompanhar\3a j_id141_body > div.form20px.clear.lHeight18px > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > select > option:nth-child(4)').select_option
+    def verfica(cpf_registro)
+        tabela[16].find('#formAcompanhar\3a j_id141_body > div.form20px.clear.lHeight18px > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > select > option:nth-child(4)').select_option
+        tabela[17].find('#formAcompanhar\3a divCamposEntradaPesquisa > input').click 
+        tabela[17].find('#formAcompanhar\3a divCamposEntradaPesquisa > input').set cpf_registro
+        pesquisar
+
+        @requerimento = tabela[27].text
+        home
+        tabela[16].find('div.form20px:nth-child(2) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > select:nth-child(1) > option:nth-child(1)').select_option
+        tabela[17].find('#formAcompanhar\3a divCamposEntradaPesquisa > input').click 
+        tabela[17].find('#formAcompanhar\3a divCamposEntradaPesquisa > input').set @requerimento
+        pesquisar
+        receber
+        puts @requerimento
+        
+        puts "#{tabela[37].text} Linha 37"
+        tabela[37].click_button 'formAcompanhar:cancelar'
+
+
+     
+        #tabela[39].find('#formAcompanhar\:confimTrans').click
+        #page.accept_confirm
+        #sleep(5)
+
+        
+              
     end
 
 
