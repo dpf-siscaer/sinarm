@@ -1,12 +1,12 @@
 Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
-    visit 'https://projetoshom.dpf.gov.br/siseg/index.php'
+    visit 'http://projetosdesenv.dpf.gov.br/siseg-prehom/index.php'
     @login = Login.new
     @login.logar usuario, senha
     @requisicao = Requisicao.new
    end
   
   Quando("eu estou no formulario requisicao") do
-      visit 'https://servicoshom.dpf.gov.br/sinarm-internet/faces/publico/incluirReqAquisicaoArmaFogo/incluirReqAquisicaoArmaFogo.seam'
+      visit 'http://10.2.96.51:8480/sinarm-internet/faces/publico/incluirReqAquisicaoArmaFogo/incluirReqAquisicaoArmaFogo.seam'
       #tipo_solicitacao = 'CIDADÃO'
       #@requisicao.preencher_cadastro_tipo tipo_solicitacao
       pessoa = 'Murilo Guilherme Danilo Bernardes'

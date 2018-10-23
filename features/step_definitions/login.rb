@@ -1,5 +1,5 @@
   Dado("que estou na pagina de login do sistema") do
-    visit 'https://projetoshom.dpf.gov.br/siseg/index.php'
+    visit 'http://projetosdesenv.dpf.gov.br/siseg-prehom/index.php'
   end
 
   Quando("eu informo um {string} e {string}") do |usuario, passoword|
