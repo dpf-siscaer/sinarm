@@ -1,20 +1,20 @@
 Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
-    visit 'http://projetosdesenv.dpf.gov.br/siseg-prehom/index.php'
+    visit 'https://projetoshom.dpf.gov.br/siseg/index.php'
     @login = Login.new
     @login.logar usuario, senha
     @requisicao = Requisicao.new
    end
   
   Quando("eu estou no formulario requisicao") do
-      visit 'http://10.2.96.51:8480/sinarm-internet/faces/publico/incluirReqAquisicaoArmaFogo/incluirReqAquisicaoArmaFogo.seam'
+      visit 'https://servicoshom.dpf.gov.br/sinarm-internet/faces/publico/incluirReqAquisicaoArmaFogo/incluirReqAquisicaoArmaFogo.seam'
       #tipo_solicitacao = 'CIDADÃO'
       #@requisicao.preencher_cadastro_tipo tipo_solicitacao
-      pessoa = 'Murilo Guilherme Danilo Bernardes'
-      pessoa_mae = 'Rayssa Isabelly'
-      pessoa_pai = 'Noah Bento Lucas Bernardes'
-      pessoa_nascimento = '09041988'
-      pessoa_cpf = '08344033152'
-      pessoa_rg = '501368371'
+      pessoa = 'Joana Gabriela Tânia Duarte - script_teste'
+      pessoa_mae = 'Daiane Giovanna Manuela'
+      pessoa_pai = 'Benjamin Antonio Enrico Brito'
+      pessoa_nascimento = '04071992'
+      pessoa_cpf = '32058629108'
+      pessoa_rg = '372273683'
       pessoa_orgao = "SSP"
       pessoa_rg_data = '15052007'
       pessoa_rg_uf = 'df'
@@ -26,15 +26,15 @@ Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
       pais = "brasil"
       uf = 'df'
       cidades = 'brasília'
-      cep = '72405904'
-      lugar = 'SH Lote 03'
+      cep = '72339093'
+      lugar = 'Quadra QS 1033 Conjunto 3'
       lugar_uf = 'df'
       tipo_residencia = 'Residencial'
-      numero = '913'
-      bairro = 'Setor Central (Gama)'
-      cidade = 'brasília'
+      numero = '162'
+      bairro = 'Samambaia Norte (Samambaia)'
+      cidade = 'Brasília'
       dd = '61'
-      celular = '985809392'
+      celular = '994767622'
       @requisicao.pais_nascimento_interessado pais, uf, cidades
       @requisicao.documentacao_rg pessoa_rg, pessoa_orgao, pessoa_rg_data, pessoa_rg_uf
       @requisicao.dados_complementares pessoa_estado_civil, pessoa_profissao, pessoa_sexo
@@ -44,8 +44,8 @@ Dado("que eu estou logado como {string} e {string}") do |usuario, senha|
       @requisicao.informar_telefone_celular dd, celular
       @requisicao.avancar
 
-     arma = 'Pistola'  
-     mmm = '.380'    
+      arma = 'Pistola'  
+      mmm = '.380'    
       @requisicao.escolher_armamento arma, mmm
       @requisicao.avancar
       porque = "Proteção"
