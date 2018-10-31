@@ -61,7 +61,6 @@ class Registro < SitePrism::Page
         emitir_manifestação
         aceite_opcoes
         encaminhar
-        salvar
     end
 
     #métodos interação
@@ -75,8 +74,6 @@ class Registro < SitePrism::Page
         finalizar
     end
 
-  
-
     def encaminhar
         find(:xpath,'//*[@id="formAcompanhar:j_id251"]').click
     end
@@ -87,7 +84,7 @@ class Registro < SitePrism::Page
         find('.w50pc > option:nth-child(6)').click
     end
 
-    #médodo que realiza o aceite do registro
+    #médodo que realiza o aceite do registro e cria um arquivo com o número de protocolo
     def verfica(cpf_registro)
         tabela[16].find('#formAcompanhar\3a j_id141_body > div.form20px.clear.lHeight18px > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > select > option:nth-child(4)').select_option
         tabela[17].find('#formAcompanhar\3a divCamposEntradaPesquisa > input').click.set cpf_registro 
@@ -115,12 +112,13 @@ class Registro < SitePrism::Page
             inserir_anexo
             finalizar
          else
-            salvar
-            emitir_manifestação
-            emitir_manifestação
-            aceite_opcoes
-            encaminhar
-            salvar
+            finalizar
+        end
+        
+        salvar
+        #cria um arquivo com o número de protocolo
+        File.open('protocolo.txt', 'w') do |escrita|
+            escrita.puts find('dt.mensagem_sucesso:nth-child(1) > span:nth-child(1)').text
         end
     end
 end
