@@ -34,6 +34,31 @@ class Requisicao < SitePrism::Page
     def limpar
         click_button 'formGeral:limpar'
     end
+
+    def submeter
+        emitir 
+    end
+
+=begin 
+    * Método provisório para solução da Captcha
+    * Neste momento será necessário a interação com o usuário
+    * Pois é necessário a inserção dos valores para dar continuidade ao Teste automatizado
+=end   
+   #metodo alert javaScript
+    def infomacao
+           page.execute_script('alert("Digite o texto da Captcha\n"
+            + "Lembrando que você terá 15 Segundos\n"
+            + "Para finalizar o Processo\n"
+            + "Por Gentileza não clique em nenhum botão\n"
+            + "Esta menssagem será fechada em 15 segundos");')  
+            sleep(15)
+    end
+
+    #metódo habilitando campo
+    def codigo
+        page.accept_alert
+        input_captcha.click
+    end
     
 
     #Método seleciona o tipo de Cadastro a ser realizado
@@ -175,25 +200,8 @@ class Requisicao < SitePrism::Page
         select local_finalizacao, from: 'formGeral:termoResponsabilidade:postoAtendimento'
    end
    
-   #metodo alert javaScript
-    def infomacao
-           page.execute_script('alert("Digite o texto da Captcha\n"
-            + "Lembrando que você terá 15 Segundos\n"
-            + "Para finalizar o Processo\n"
-            + "Por Gentileza não clique em nenhum botão\n"
-            + "Esta menssagem será fechada em 15 segundos");')  
-            sleep(15)
-    end
 
-    #metódo habilitando campo
-    def codigo
-        page.accept_alert
-        input_captcha.click
-    end
 
-    #método submeter
-    def submeter
-        emitir 
-    end
+    
 end
 
